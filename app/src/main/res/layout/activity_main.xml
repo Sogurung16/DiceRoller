@@ -28,5 +28,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:hint="The number rolled is..."></TextView>
+    // Takes input number to guess the number rolled.
+    // If the number guessed is = number rolled then prints congrats
+    <EditText
+        android:id="@+id/guessNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Guess number 1-6!!!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></EditText>
+
+    <TextView
+        android:id="@+id/congrats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62"></TextView>
+    // displays user points, the number of correct guesses
 
 </androidx.constraintlayout.widget.ConstraintLayout>

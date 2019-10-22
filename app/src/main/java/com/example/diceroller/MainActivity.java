@@ -11,9 +11,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private int randomNum;
-    TextView mDisplayRandNum;
+    private int randomNum, guessNum;
 
+    TextView mDisplayRandNum, mCongrats;
+    EditText mGuessNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String randomNumString = Integer.toString(randomNum); // convert randomNum (int) to a string.
 
         mDisplayRandNum.setText(randomNumString); // display string randomNumString.
+        onGuess();
     }
 
+    public void onGuess(){
+
+        mGuessNum = (EditText) findViewById(R.id.guessNum);
+        mCongrats = (TextView) findViewById(R.id.congrats);
+
+        if (mGuessNum.length() != 0) {
+            guessNum = Integer.valueOf(mGuessNum.getText().toString());
+            if (guessNum <= 6 && guessNum >= 1) {
+                if (guessNum == randomNum) {
+                    mCongrats.setText("Congratulations! you guessed the correct number");
+                } else {
+                    mCongrats.setText("Unlucky! try again");
+                }
+            }
+            else{
+                mCongrats.setText("Error guess number 1- 6");
+            }
+        }
+        else {
+            mCongrats.setText("Error guess number 1- 6");
+        }
+    }
 }
