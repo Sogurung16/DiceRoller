@@ -11,9 +11,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private int randomNum, guessNum;
+    private int randomNum, guessNum, userPoints;
+    private String userPointsString;
 
-    TextView mDisplayRandNum, mCongrats;
+    TextView mDisplayRandNum, mCongrats, mUserPoints;
     EditText mGuessNum;
 
     @Override
@@ -38,12 +39,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mGuessNum = (EditText) findViewById(R.id.guessNum);
         mCongrats = (TextView) findViewById(R.id.congrats);
+        mUserPoints = (TextView) findViewById(R.id.userPoints);
 
         if (mGuessNum.length() != 0) {
             guessNum = Integer.valueOf(mGuessNum.getText().toString());
             if (guessNum <= 6 && guessNum >= 1) {
                 if (guessNum == randomNum) {
                     mCongrats.setText("Congratulations! you guessed the correct number");
+                    userPoints++;
+                    userPointsString = Integer.toString(userPoints);
+                    mUserPoints.setText("User points: " + userPointsString);
                 } else {
                     mCongrats.setText("Unlucky! try again");
                 }
