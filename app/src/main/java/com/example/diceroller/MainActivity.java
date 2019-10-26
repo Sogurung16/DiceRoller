@@ -23,19 +23,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
     }
 
-    public void onClick(View v) {
-
-        mDisplayRandNum = this.findViewById(R.id.displayRandNum);
+    private int roll_the_dice(){
 
         Random roll = new Random();
         randomNum = roll.nextInt(6 - 1 + 1) + 1; // generate random number between 1 and 6.
-        String randomNumString = Integer.toString(randomNum); // convert randomNum (int) to a string.
 
-        mDisplayRandNum.setText(randomNumString); // display string randomNumString.
-        onGuess();
+        return randomNum;
     }
 
-    public void onGuess(){
+    private void onGuess(){
 
         mGuessNum = (EditText) findViewById(R.id.guessNum);
         mCongrats = (TextView) findViewById(R.id.congrats);
@@ -59,6 +55,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             mCongrats.setText("Error guess number 1- 6");
+        }
+    }
+
+    public void onClick(View v) {
+
+        mDisplayRandNum = this.findViewById(R.id.displayRandNum);
+
+        String randomNumString = Integer.toString(roll_the_dice()); // convert randomNum (int) to a string.
+
+        mDisplayRandNum.setText(randomNumString); // display string randomNumString.
+        onGuess();
+    }
+
+    public void onDIceBreaker(View v){
+
+        mDisplayRandNum = this.findViewById(R.id.displayRandNum);
+
+        roll_the_dice();
+
+        switch (randomNum){
+            case 1 :
+                mDisplayRandNum.setText("If you could go anywhere in the world, where would you go?");
+                break;
+            case 2:
+                mDisplayRandNum.setText("If you were stranded on a desert island, what three things would you want to take with you?");
+                break;
+            case 3:
+                mDisplayRandNum.setText("If you could eat only one food for the rest of your life, what would that be?");
+                break;
+            case 4:
+                mDisplayRandNum.setText("If you won a million dollars, what is the first thing you would buy?");
+                break;
+            case 5:
+                mDisplayRandNum.setText("If you could spaned the day with one fictional character, who would it be?");
+                break;
+            case 6:
+                mDisplayRandNum.setText("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+                break;
+                default:
+                    mDisplayRandNum.setText("Error");
         }
     }
 }
