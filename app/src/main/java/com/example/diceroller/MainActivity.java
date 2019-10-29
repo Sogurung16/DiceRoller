@@ -2,6 +2,7 @@ package com.example.diceroller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -93,8 +94,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 6:
                 mDisplayRandNum.setText("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
                 break;
+
                 default:
                     mDisplayRandNum.setText("Error");
         }
     }
+
+    public void NewDIceBreaker(View v){
+
+        Intent intent = new Intent(this, DIceBreaker.class);
+        startActivity(intent);
+
+    }
 }
+
+// TODO: 1) Add another button 'Add a new D-icebreaker'.
+// TODO: 2) Start a new activity.
