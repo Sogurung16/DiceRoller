@@ -12,7 +12,7 @@ public class AddNewDIceBreaker extends AppCompatActivity {
     private String newRuleString;
 
     EditText mNewRule;
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
