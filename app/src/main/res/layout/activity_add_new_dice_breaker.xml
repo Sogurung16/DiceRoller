@@ -4,41 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DIceBreaker">
+    tools:context=".AddNewDIceBreaker">
 
     <EditText
+        android:id="@+id/newRule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Input a new ice-breaker rule"
+        android:hint="Input a new Ice-breaker rule"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198"></EditText>
+        app:layout_constraintVertical_bias="0.102"></EditText>
 
     <Button
+        android:id="@+id/saveNewRule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
         android:onClick="Save"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintHorizontal_bias="0.343"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"></Button>
+        app:layout_constraintVertical_bias="0.202"></Button>
 
     <Button
+        android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="cancel"
         android:text="Cancel"
-        android:onClick="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintHorizontal_bias="0.712"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"></Button>
+        app:layout_constraintVertical_bias="0.202"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

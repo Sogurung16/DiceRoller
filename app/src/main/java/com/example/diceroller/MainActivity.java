@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private int randomNum, guessNum, userPoints;
     private String userPointsString;
+
+    public ArrayList<String> ruleArray = new ArrayList<>();
 
     TextView mDisplayRandNum, mCongrats, mUserPoints;
     EditText mGuessNum;
@@ -22,6 +26,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ruleArray.add(0,"If you could go anywhere in the world, where would you go?");
+        ruleArray.add(1, "If you were stranded on a desert island, what three things would you want to take with you?");
+        ruleArray.add(2, "If you could eat only one food for the rest of your life, what would that be?");
+        ruleArray.add(3, "If you won a million dollars, what is the first thing you would buy?");
+        ruleArray.add(4, "If you could spend the day with one fictional character, who would it be?");
+        ruleArray.add(5, "If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+    }
+
+    public void addNewDIcebreaker(View view){
+        Intent intent = new Intent(this, AddNewDIceBreaker.class);
+        startActivityForResult(intent, 1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 1 && resultCode == 1 && data != null) {
+            ruleArray.add(data.getStringExtra("newRule"));
+        }
     }
 
     private int roll_the_dice(){
@@ -34,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void onGuess(){
 
-        mGuessNum = (EditText) findViewById(R.id.guessNum);
-        mCongrats = (TextView) findViewById(R.id.congrats);
-        mUserPoints = (TextView) findViewById(R.id.userPoints);
+        mGuessNum = findViewById(R.id.guessNum);
+        mCongrats = findViewById(R.id.congrats);
+        mUserPoints = findViewById(R.id.userPoints);
 
         if (mGuessNum.length() != 0) {
             guessNum = Integer.valueOf(mGuessNum.getText().toString());
@@ -73,40 +95,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mDisplayRandNum = this.findViewById(R.id.displayRandNum);
 
-        roll_the_dice();
+        Random roll = new Random();
+        randomNum = roll.nextInt(ruleArray.size() - 1 + 1);
 
-        switch (randomNum){
-            case 1 :
-                mDisplayRandNum.setText("If you could go anywhere in the world, where would you go?");
-                break;
-            case 2:
-                mDisplayRandNum.setText("If you were stranded on a desert island, what three things would you want to take with you?");
-                break;
-            case 3:
-                mDisplayRandNum.setText("If you could eat only one food for the rest of your life, what would that be?");
-                break;
-            case 4:
-                mDisplayRandNum.setText("If you won a million dollars, what is the first thing you would buy?");
-                break;
-            case 5:
-                mDisplayRandNum.setText("If you could spaned the day with one fictional character, who would it be?");
-                break;
-            case 6:
-                mDisplayRandNum.setText("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
-                break;
-
-                default:
-                    mDisplayRandNum.setText("Error");
-        }
-    }
-
-    public void NewDIceBreaker(View v){
-
-        Intent intent = new Intent(this, DIceBreaker.class);
-        startActivity(intent);
-
+        mDisplayRandNum.setText(ruleArray.get(randomNum));
     }
 }
 
-// TODO: 1) Add another button 'Add a new D-icebreaker'.
-// TODO: 2) Start a new activity.
+// TODO 1) Add a finish button on the main Activity screen, clicking the button sends you to a new screen
+//On the new screen there must be one button called "Share your score on slack"
+//When you click the button your current score should be posted on the slack channel #test-android
